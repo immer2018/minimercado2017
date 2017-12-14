@@ -1,9 +1,4 @@
 <div class="container">
-<<<<<<< HEAD
-    <section class="section" data-parsley-validate>
-        <h1  class="h1-responsive text-orange text-center">Orden de Entrada</h1>
-        <div style="height: 4vh"></div>
-=======
     <section class="content">
         <div style="height: 5vh"></div>
         <h5 class=" text-orange text-center"></h5>
@@ -13,7 +8,6 @@
         <?php if ($this->session->flashdata('incorrecto')): ?>
             <div class=" alert alert-danger" ><?php echo $this->session->flashdata('incorrecto'); ?> </div> 
         <?php endif; ?>
->>>>>>> immer
         <?php echo form_open('IngreseEntrada'); ?>
         <div class="flex-center">
             <?php if (validation_errors()): ?>
@@ -39,10 +33,10 @@
                             <div class="input-group">
                                 <label for="producto" class="input-group-addon" data-error="wrong" data-success="right"><i class="fa fa-cart-plus text-gray"></i></label>
                                 
-                                <select  name="txtCodProd" class="form-control select2"  id="txtCodProd" required data-parsley-trigger="keyup">
+                                <select  name="txtCodProd" class="form-control select2"  id="CodProducto" required data-parsley-trigger="keyup">
                                     <option value="">seleccione un Producto</option>
                                     <?php foreach ($productos as $producto_item): ?>
-                                        <option value="<?= $producto_item['idProducto'] ?>"><?= $producto_item['NombreProducto'] ?></option>
+                                        <option value="<?php echo $producto_item['idProducto'];?>"><?php echo $producto_item['NombreProducto']; ?></option>
                                     <?php endforeach; ?>
                                 </select>
                                 
@@ -77,70 +71,11 @@
                             <br>
                         </div>
                     </div>
-<<<<<<< HEAD
-
-                <?php endif; ?>
-            </div>
-        </div>
-        <div class="row">
-    <div class="col-md-5" style="margin-left: 350px;">
-        <div class="box box-success">
-
-            <!-- /.box-header -->
-            <div class="box-body">
-                <div class="input-group">
-                    <label for="producto" class="input-group-addon" data-error="wrong" data-success="right"><i class="fa fa-cart-plus text-gray1"></i></label>
-                    <input type="text" name="txtProducto" id="producto" class="form-control" placeholder="Nombre del producto">
-
-                </div>
-                <br>
-                <script>
-                    $(function () {
-                        $("#producto").autocomplete({
-                            source: "<?php base_url() ?>inventario/get_producto" // 
-                        });
-                    });
-                </script>
-                <div class="input-group">
-                    <label for="cantentrada"  class="input-group-addon" data-error="wrong" data-success="right"><i class="fa fa-cubes text-gray1 "></i> </label>
-                    <input type="text" id="cantentrada" class="form-control" name="txtCantentra" placeholder="Cantidad Entrada">
-                </div>
-                <br>
-                <div class="input-group">
-                    <label for="snombP" data-error="wrong" data-success="right" class="input-group-addon"> <i class="fa fa-money text-gray1"></i>  </label>
-                    <input type="text" name="txtPreentra" id="form1" class="form-control" placeholder="Precio Entrada">
-                </div>
-                <br>
-                <div class="input-group">
-                    <label for="proveedor" data-error="wrong" data-success="right" class="input-group-addon"> <i class="fa fa-photo text-gray1"></i></label>
-                    <select name="txtCodProv" class="form-control md-form"  id="txtCodProv" required data-parsley-trigger="keyup">
-                        <option value="">seleccione un Proveedor</option>
-                        <?php foreach ($proveedor_select as $proveedor_item): ?>
-                            <option value="<?= $proveedor_item['idProveedor'] ?>"><?= $proveedor_item['NombreProveedor'] ?></option>
-                        <?php endforeach; ?>
-                    </select>
-                </div>  
-            </div>
-            <!-- /.box-body -->
-        </div>
-        <!-- /.box -->
-    </div> 
-
-
-</div>
-        <div class="row" style="margin-left:500px ;">
-            <div class="col-11">
-                <div class="flex-center">
-
-                    <button type="submit" class="btn bg-orange "  name="btnNuevaEntrada"  ><i class='fa fa-send'> Registrar Orden Entrada</i></button>
-
-=======
                     <!-- /.box-body -->
                     <div class="box-footer">
                         <button type="submit" class="btn bg-orange pull-right "  name="btnNuevaEntrada"  ><i class='fa fa-save'> Registrar Orden Entrada</i></button>
                     </div>
                     <!-- /.box-footer-->
->>>>>>> immer
                 </div>
                 <!-- /.box --> 
                 <?php echo form_close(); ?>

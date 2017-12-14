@@ -102,6 +102,7 @@ class Inventario extends CI_Controller {
             'porVencerse' => $this->inventario_model->cantidadXVencerse()->cuantovencerse,
             'agotados' => $this->inventario_model->cantidadAgotados()->agotados,
             'porAgotarse' => $this->inventario_model->cantidadXAgotarse()->cuantoAgotarse,
+			'productos' => $this->productos_model->obtenerProductos(),
             'perfil' => $this->usuario_model->consultarPerfil($this->session->userdata('idUsuario'))];
         $this->load->view('templates/admin/header', $data);
         $this->load->view('templates/admin/menu', $data);
@@ -369,8 +370,9 @@ class Inventario extends CI_Controller {
             'porVencerse' => $this->inventario_model->cantidadXVencerse()->cuantovencerse,
             'agotados' => $this->inventario_model->cantidadAgotados()->agotados,
             'porAgotarse' => $this->inventario_model->cantidadXAgotarse()->cuantoAgotarse,
+			'productos' => $this->productos_model->obtenerProductos(),
             'perfil' => $this->usuario_model->consultarPerfil($this->session->userdata('idUsuario'))];
-        $this->form_validation->set_rules('txtProducto', 'nombre del producto', 'required|callback_existir_producto');
+        $this->form_validation->set_rules('txtCodProd', 'nombre del producto', 'required');
         $this->form_validation->set_rules('txtPreSalida', 'Precio salida', 'required|numeric');
         $this->form_validation->set_rules('txtCantsalida', 'cantidad salida', 'required|integer');
         $this->form_validation->set_rules('cboMotivo', 'motivo', 'required');
@@ -387,7 +389,7 @@ class Inventario extends CI_Controller {
             $this->load->view('templates/admin/footer');
         } else {
             // defino variables para ingresar los datos
-            $nombreproducto = $this->input->post('txtProducto');
+            $nombreproducto = $this->input->post('txtCodProd');
             $precioSalida = $this->input->post('txtPreSalida');
             $cantSalida = $this->input->post('txtCantsalida');
             $motivo = $this->input->post('cboMotivo');
@@ -408,7 +410,7 @@ class Inventario extends CI_Controller {
 
     public function existir_producto() {
         
-        $producto = $this->input->post('txtProducto');
+        $producto = $this->input->post('txtCodProd');
         $comprobar_producto = $this->productos_model->verifica_producto($producto);
         if ($comprobar_producto !== TRUE) {
             $this->form_validation->set_message('existir_producto', 'El producto no existe en el sistema');
